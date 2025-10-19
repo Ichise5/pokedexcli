@@ -1,0 +1,81 @@
+package pokeapi
+
+// RespShallowLocations represents the response from the location-area endpoint
+type RespPokemon struct {
+    ID    					int     `json:"id"`
+    Name 					string 	`json:"name"`
+	BaseExperience 			int		`json:"base_experience"`
+	Height					int     `json:"height"`
+	IsDefault				bool    `json:"is_default"`
+	Order					int     `json:"order"`
+	Weight					int     `json:"weight"`
+	Abilities				[]struct{
+		IsHidden	bool	`json:"is_hidden"`
+		Slot		int		`json:"slot"`
+		Ability		struct{
+			Name string `json:"name"`
+            URL  string `json:"url"`
+		}	`json:"ability"`
+	}`json:"abilities"`
+	Forms				[]struct{
+			Name string `json:"name"`
+            URL  string `json:"url"`
+	}`json:"forms"`
+	GameIndices				[]struct{
+		GameIndex	int		`json:"game_index"`
+		Version		struct{
+			Name string `json:"name"`
+            URL  string `json:"url"`
+		}`json:"version"`
+	}`json:"game_indices"`
+	HeldItems				[]struct{
+		Item		struct{
+			Name string `json:"name"`
+            URL  string `json:"url"`
+		}`json:"item"`
+		VersionDetails	[]struct{
+			Rarity	int		`json:"rarity"`
+			Version		struct{
+				Name string `json:"name"`
+            	URL  string `json:"url"`
+			}`json:"version"`
+		}`json:"version_details"`
+	}`json:"held_items"`
+	LocationAreaEncounters	string	`json:"location_area_encounters"`
+	Moves				[]struct{
+		Move	struct{
+			Name string `json:"name"`
+            URL  string `json:"url"`
+		}`json:"move"`
+		VersionGroupDetails	struct{
+			LevelLearnedAt	int	`json:"level_learned_at"`
+			MoveLearnMethod	struct{
+				Name string `json:"name"`
+            	URL  string `json:"url"`
+			}`json:"move_learn_method"`
+			Order	*string `json:"order"`
+			VersionGroup	struct{
+				Name string `json:"name"`
+            	URL  string `json:"url"`
+			}`json:"version_group"`
+		}`json:"version_group_details"`
+	}`json:"moves"`
+	Species				[]struct{
+		Name string `json:"name"`
+		URL  string `json:"url"`
+	}`json:"species"`
+	Sprites				[]struct{
+		
+	}`json:"sprites"`
+	Cries				[]struct{
+		
+	}`json:"cries"`
+	Stats				[]struct{
+		
+	}`json:"stats"`
+	Types				[]struct{
+		
+	}`json:"types"`
+
+
+}

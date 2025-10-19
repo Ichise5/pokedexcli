@@ -6,7 +6,7 @@ import (
     "os"
     "strings"
 
-    "github.com/bootdotdev/pokedexcli/internal/pokeapi"
+    "github.com/Ichise5/pokedexcli/internal/pokeapi"
 )
 
 // Updated config struct
@@ -14,6 +14,8 @@ type config struct {
     pokeapiClient    pokeapi.Client
     nextLocationsURL *string
     prevLocationsURL *string
+    maxExp           int
+    pokemon          map[string]RespPokemon
 }
 
 func startRepl(cfg *config) {  // Now takes config parameter
@@ -32,11 +34,14 @@ func startRepl(cfg *config) {  // Now takes config parameter
             continue
         }
         words := cleanInput(line)
+        if len(words) == 1{
+            words = append(words, "")
+        }
 
         foundCommand := false
         for _, command := range getCommands() {  // Renamed from commands()
             if command.name == words[0] {
-                err := command.callback(cfg)  // Pass config
+                err := command.callback(cfg, &words[1])  // Pass config and parameter
                 if err != nil {
                     fmt.Println(err)
                 }
@@ -73,6 +78,16 @@ func getCommands() map[string]cliCommand {
             description: "Get the previous page of locations",
             callback:    commandMapb,
         },
+        "explore": {
+            name:        "explore",
+            description: "Get list of pokemons in a location. This command require a parameter",
+            callback:    commandExplore,
+        },
+        "catch": {
+            name:        "catch",
+            description: "Try to catch a pokemon",
+            callback:    commandCatch,
+        },
     }
 }
 
@@ -80,7 +95,7 @@ func getCommands() map[string]cliCommand {
 type cliCommand struct {
     name        string
     description string
-    callback    func(*config) error  // Now takes config parameter
+    callback    func(*config, *string) error  // Now takes config parameter
 }
 
 // Keep your cleanInput function as is - it's fine
