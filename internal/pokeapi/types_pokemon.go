@@ -47,27 +47,27 @@ type RespPokemon struct {
 			Name string `json:"name"`
             URL  string `json:"url"`
 		}`json:"move"`
-		VersionGroupDetails	struct{
+		VersionGroupDetails	[]struct{
 			LevelLearnedAt	int	`json:"level_learned_at"`
 			MoveLearnMethod	struct{
 				Name string `json:"name"`
             	URL  string `json:"url"`
 			}`json:"move_learn_method"`
-			Order	*string `json:"order"`
+			Order	int `json:"order"`
 			VersionGroup	struct{
 				Name string `json:"name"`
             	URL  string `json:"url"`
 			}`json:"version_group"`
 		}`json:"version_group_details"`
 	}`json:"moves"`
-	Species				[]struct{
+	Species				struct{
 		Name string `json:"name"`
 		URL  string `json:"url"`
 	}`json:"species"`
-	Sprites				[]struct{
+	Sprites				struct{
 		
 	}`json:"sprites"`
-	Cries				[]struct{
+	Cries				struct{
 		
 	}`json:"cries"`
 	Stats				[]struct{
@@ -77,5 +77,6 @@ type RespPokemon struct {
 		
 	}`json:"types"`
 
-
+	Seen	bool
+	Caught	bool
 }

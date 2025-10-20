@@ -6,7 +6,7 @@ import(
 )
 
 func commandCatch(cfg *config, param *string) error{
-	fmt.Printf("Throwing a Pokeball at %s...", *param)
+	fmt.Printf("Throwing a Pokeball at %s...\n", *param)
 
 	pokemonInfo, err := cfg.pokeapiClient.GetPokemon(param)
     if err != nil {
@@ -21,12 +21,14 @@ func commandCatch(cfg *config, param *string) error{
 			break
 		}
 	}
-
+	
+	pokemonInfo.Seen = true
 	if rand.Intn(cfg.maxExp) > pokemonInfo.BaseExperience{
-		fmt.Printf("%s was caught!", pokemonInfo.Name)
-		cfg.pokemon[pokemonInfo.Name] = pokemonInfo
+		pokemonInfo.Caught = true
+		fmt.Printf("%s was caught!\n", pokemonInfo.Name)
+		cfg.pokemons[pokemonInfo.Name] = pokemonInfo
 	}else{
-		fmt.Printf("%s escaped!", pokemonInfo.Name)
+		fmt.Printf("%s escaped!\n", pokemonInfo.Name)
 	}
 
 	return nil

@@ -15,12 +15,13 @@ type config struct {
     nextLocationsURL *string
     prevLocationsURL *string
     maxExp           int
-    pokemon          map[string]RespPokemon
+    pokemons         map[string] pokeapi.RespPokemon
 }
 
 func startRepl(cfg *config) {  // Now takes config parameter
     scanner := bufio.NewScanner(os.Stdin)
     
+    cfg.pokemons = make(map[string] pokeapi.RespPokemon)
     for {
         fmt.Print("Pokedex > ")
         scanner.Scan() 
