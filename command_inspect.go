@@ -11,16 +11,20 @@ func commandInspect(cfg *config, param *string) error{
 		return nil
 	}
 
+
+
 	fmt.Printf("Name: %s\n", val.Name)
-	fmt.Printf("Height: %d\n", val.Height)
-	fmt.Printf("Weight: %d\n", val.Weight)
-	fmt.Println("Stats:")
-	for i := 0; i < len(val.Stats); i++ {
-		fmt.Printf("  -%s: %d\n", val.Stats[i].Stat.Name, val.Stats[i].BaseStat)
-	}
-	fmt.Println("Types:")
-	for i := 0; i < len(val.Types); i++ {
-		fmt.Printf("  - %s\n", val.Types[i].Type.Name)
+	if val.Caught{
+		fmt.Printf("Height: %d\n", val.Height)
+		fmt.Printf("Weight: %d\n", val.Weight)
+		fmt.Println("Stats:")
+		for i := 0; i < len(val.Stats); i++ {
+			fmt.Printf("  -%s: %d\n", val.Stats[i].Stat.Name, val.Stats[i].BaseStat)
+		}
+		fmt.Println("Types:")
+		for i := 0; i < len(val.Types); i++ {
+			fmt.Printf("  - %s\n", val.Types[i].Type.Name)
+		}
 	}
 	return nil
 }

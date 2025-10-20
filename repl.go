@@ -94,6 +94,11 @@ func getCommands() map[string]cliCommand {
             description: "Retuns pokemon information in case it has been seen or caught. This command requires a parameter.",
             callback:    commandInspect,
         },
+        "pokedex": {
+            name:        "pokedex",
+            description: "Retuns all pokemons that were caught or seen.",
+            callback:    commandPokedex,
+        },
     }
 }
 
